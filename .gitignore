@@ -10,8 +10,4 @@ MANIFEST
 dist/
 *.ipynb
 *.log
-.vscode
 run_main.py
-formatted/
-json
-markdown
