@@ -66,7 +66,6 @@ def main():
                              "fetching entirely. Also note that if jet is installed, the edn "
                              "output will be pretty printed allowing for cleaner git diffs.")
     args = parser.parse_args()
-    
 
     if args.directory is None:
         git_path = Path("notes").absolute()
