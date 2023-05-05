@@ -47,7 +47,6 @@ class Browser:
                                              firefox_profile=firefox_profile,
                                              firefox_options=firefox_options,
                                              service_log_path=os.devnull)
-
         elif browser == Browser.PHANTOMJS:
             raise NotImplementedError()
             # TODO configure

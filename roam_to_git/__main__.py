@@ -85,9 +85,9 @@ def main():
     if args.browser_path is None:
         if args.debug:
             logger.debug(
-                "No browser path specified, specify a browser with --browser-path <browser_path>")
+                """No browser specified, specify a browser with --browser-path <browser_path>""")
         else:
-            logger.error("No browser path specified")
+            logger.error("No browser specified")
         sys.exit(1)
     else:
         BROWSER_PATH = " ".join(args.browser_path)
