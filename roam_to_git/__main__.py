@@ -81,13 +81,37 @@ def main():
         logger.error("Please define ROAMRESEARCH_USER and ROAMRESEARCH_PASSWORD, "
                      "in the .env file of your notes repository, or in environment variables")
         sys.exit(1)
+
+    if args.browser_path is None:
+        logger.debug("Running auto detect browser")
+        dir_files = os.listdir(os.curdir)
+        has_firefox = [filename for filename in dir_files if 'firefox' in str(filename.lower())]
+        has_chrome = [filename for filename in dir_files if 'chrome' in str(filename.lower())]
+        if has_firefox:
+            logger.debug("Browser detected in current directory")
+            BROWSER_PATH = f"./{has_firefox[0]}"
+        elif has_chrome:
+            logger.debug("Browser detected in current directory")
+            BROWSER_PATH = f"./{has_chrome[0]}"
+        else:
+            if args.debug:
+                logger.debug(
+                    """No browser detected, specify a browser with --browser-path <browser_path>""")
+            else:
+                logger.error("No browser detected in current directory")
+            sys.exit(1)
+    else:
+        BROWSER_PATH = " ".join(args.browser_path)
+        if BROWSER_PATH == "":
+            logger.debug("Browser path value missing specify using --browser-path <browser_path>")
+            sys.exit(1)
     config = Config(database=args.database,
                     debug=args.debug,
                     gui=args.gui,
                     sleep_duration=float(args.sleep_duration),
                     browser=args.browser,
                     browser_args=args.browser_arg,
-                    browser_path=" ".join(args.browser_path))
+                    browser_path=BROWSER_PATH)
 
     if args.skip_git:
         repo = None
