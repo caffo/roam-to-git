@@ -42,6 +42,11 @@ class Browser:
                 firefox_options.headless = True
 
             logger.trace("Start Firefox")
+            print(f"firefox_binary => {browser_path}")
+            print(f"firefox_path => {os.system('firefox --version')}")
+            print(f"firefox_profile => {firefox_profile}")
+            print(f"firefox_options => {firefox_options}")
+            print(f"service_log_path => {os.devnull}")
 
             if browser_path:
                 self.browser = webdriver.Firefox(executable_path=GeckoDriverManager().install(),
