@@ -120,7 +120,7 @@ def main():
                     logger.debug("Unzipping and saving {}", f)
                     unzip_and_save_archive(f, root_zip_path / f, git_path / f)
                 else:
-                    shutil.copytree(root_zip_path / f , git_path / f, dirs_exist_ok=True)
+                    shutil.copytree(root_zip_path / f, git_path / f, dirs_exist_ok=True)
     if "formatted" in args.formats:
         formatted = format_markdown(read_markdown_directory(git_path / "markdown"))
         save_files("formatted", git_path / "formatted", formatted)
